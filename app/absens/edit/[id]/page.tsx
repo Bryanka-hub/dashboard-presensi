@@ -1,7 +1,8 @@
 import UpdateForm from "@/components/edit-form";
 import { getAbsenById } from "@/lib/data";
 import { notFound } from "next/navigation";
-export const UpdateAbsenPage = async ({params}:{params:{id:string}}) => {
+
+const UpdateAbsenPage = async ({params}:{params:{id:string}}) => {
   const id = params.id;
   const absen = await getAbsenById(id);
 

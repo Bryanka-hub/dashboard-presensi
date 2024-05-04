@@ -5,6 +5,7 @@ import Search from "@/components/search";
 import TableSkeleton from "@/components/skeleton";
 import { getAbsenPages } from "@/lib/data";
 import { Suspense } from "react";
+
 const Absens = async ({
     searchParams,
 }:{
