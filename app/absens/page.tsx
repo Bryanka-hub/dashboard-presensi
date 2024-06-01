@@ -8,30 +8,35 @@ import { Suspense } from "react";
 
 const Absens = async ({
     searchParams,
-}:{
-    searchParams?:{
-        quary?:string;
-        page?:string;
+}: {
+    searchParams?: {
+        query?: string;
+        page?: string;
     };
 }) => {
-    const quary = searchParams?.quary || "";
+    const query = searchParams?.query || "";
     const currentPage = Number(searchParams?.page) || 1;
 
-    const totalPages = await getAbsenPages(quary);
+    const totalPages = await getAbsenPages(query);
 
     return (
-        <div className="max-w-screen-md mx-auto mt-5">
-            <div className="flex items-center justify-between gap-1 mb-5">
-                <Search/>
-                <CreateButton/>
+        <div className="min-h-screen flex bg-gray-900 text-white">
+            <div className="flex flex-col flex-grow">
+                <div className="w-full px-4 py-5 flex-grow">
+                    <div className="flex items-center justify-between gap-4 mb-5 card fadeInUp">
+                        <Search />
+                        <CreateButton />
+                    </div>
+                    <Suspense key={query + currentPage} fallback={<TableSkeleton />}>
+                        <div className="card fadeInUp">
+                            <AbsenTable quary={query} currentPage={currentPage} />
+                        </div>
+                    </Suspense>
+                    <div className="flex justify-center mt-4 card fadeInUp">
+                        <Pagination totalPages={totalPages} />
+                    </div>
+                </div>
             </div>
-            <Suspense key={quary + currentPage} fallback={<TableSkeleton/>}>
-            <AbsenTable quary={quary} currentPage={currentPage}/>
-            </Suspense>
-            <div className="flex justify-center mt-4">
-            <Pagination totalPages={totalPages}/>
-            </div>
-            
         </div>
     );
 };

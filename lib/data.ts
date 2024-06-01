@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 
-const ITEMS_PER_PAGE =  5;
+const ITEMS_PER_PAGE =  10;
 
 export const getAbsens = async (query: string, currentPage: number) => {
     const offset = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -22,6 +22,12 @@ export const getAbsens = async (query: string, currentPage: number) => {
                             mode: "insensitive"
                          }
                     },
+                    {
+                        status: {
+                            equals: query,
+                            mode: "insensitive"
+                         }
+                    },
                 ]
             }
         });
@@ -34,10 +40,11 @@ export const getAbsens = async (query: string, currentPage: number) => {
 export const getAbsenById = async (id: string) => {
     try {
         const absen = await prisma.absen.findUnique({
-            where: {id}});
+            where: { id },
+        });
         return absen;
     } catch (error) {
-        
+        throw new Error("Gagal Mengambil Data Absen");
     }
 };
 
@@ -55,6 +62,12 @@ export const getAbsenPages = async (query: string) => {
                     {
                         nrp: {
                             contains: query,
+                            mode: "insensitive"
+                         }
+                    },
+                    {
+                        status: {
+                            equals: query,
                             mode: "insensitive"
                          }
                     },
