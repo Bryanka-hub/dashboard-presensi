@@ -20,6 +20,7 @@ const AbsenTable = async ({
                         <th className="py-3 px-6">Name</th>
                         <th className="py-3 px-6">NRP</th>
                         <th className="py-3 px-6">Created At</th>
+                        <th className="py-3 px-6">Status</th>
                         <th className="py-3 px-6">Action</th>
                     </tr>
                 </thead>
@@ -33,9 +34,11 @@ const AbsenTable = async ({
                             <td className="py-3 px-6">{absen.name}</td>
                             <td className="py-3 px-6">{absen.nrp}</td>
                             <td className="py-3 px-6">{formatDate(absen.createdAt.toString())}</td>
+                            <td className="py-3 px-6">{absen.status}</td>
                             <td className="py-3 px-6 flex justify-center gap-2">
                                 <EditButton id={absen.id} />
                                 <DeleteButton id={absen.id} />
+                                
                             </td>
                         </tr>
                     ))}

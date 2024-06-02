@@ -9,6 +9,7 @@ const DashboardPage = () => {
 
   // Fungsi untuk menavigasi ke halaman presensi saat tombol ditekan
   const navigateToPresensiPage = () => {
+    // console.log("Navigating to /absens");
     router.push('/absens'); 
   };
 
@@ -29,11 +30,13 @@ const DashboardPage = () => {
       {/* Tombol Plus */}
       <button
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold p-4 rounded-full fixed bottom-10 right-10 flex items-center justify-center"
-        onClick={navigateToPresensiPage}
+        onClick={navigateToPresensiPage }
       >
         <AiOutlinePlusCircle size={24} />
       </button>
     </div>
+    
+    
   );
 };
 
