@@ -24,7 +24,7 @@ export const saveAbsen = async (prevstate: any, formData: FormData) => {
             data: {
                 name: validatedFields.data.name,
                 nrp: validatedFields.data.nrp,
-                status: validatedFields.data.status || "null",
+                status: validatedFields.data.status || "hadir",
             },
         });
     } catch (error) {
